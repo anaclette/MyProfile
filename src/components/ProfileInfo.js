@@ -51,7 +51,7 @@ const UserName = styled.h2`
 font-weight: bold
 font-size: 13px;
 `;
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
 	width: 90px;
 	padding: 7px;
 	border-radius: 5px;
@@ -110,10 +110,8 @@ const ProfileInfo = () => {
 			</TextInfoContainer>
 			{openOverlay && (
 				<Overlay>
-					{/* <TextInfoContainer alignItems="center" justifyContent="center"> */}
 					<TextLine>You are not logged in!</TextLine>
 					<StyledButton onClick={() => setOpenOverlay(false)}>Sign in</StyledButton>
-					{/* </TextInfoContainer> */}
 				</Overlay>
 			)}
 		</PersonalDetailsContainer>

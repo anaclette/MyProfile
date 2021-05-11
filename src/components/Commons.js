@@ -34,7 +34,7 @@ export const Title = styled.h1`
 	color: ${(props) => props.color || 'white'};
 `;
 
-export const StyledButton = styled.button`
+export const Button = styled.button`
 	border: 1px solid transparent;
 	outline: 0;
 	margin: 3px;

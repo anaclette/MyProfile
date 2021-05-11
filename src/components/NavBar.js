@@ -6,10 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
-import { SpacedItems, AlignedItems, StyledLink, TitleContainer, Title, StyledButton } from './Commons';
+import { SpacedItems, AlignedItems, StyledLink, TitleContainer, Title, Button } from './Commons';
 import styled from 'styled-components';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../styles/Themes';
+import { StyledButton } from './ProfileInfo';
+import SignIn from './SignInScreen';
 
 const StyledNavBar = styled.div`
 	padding: 10px;
@@ -19,11 +21,13 @@ const StyledNavBar = styled.div`
 
 const NavBar = () => {
 	const [ isloggedIn, setLoggedIn ] = useState(false);
+
 	// const { loggedIn } = useContext(UserContext);
 	// console.log('Im in NavBar', loggedIn);
 	const handleClick = () => {
 		setLoggedIn(!isloggedIn);
 	};
+
 	return (
 		<div>
 			<BrowserRouter>
@@ -31,26 +35,32 @@ const NavBar = () => {
 					<StyledNavBar>
 						<SpacedItems>
 							<TitleContainer>
-								<Title color={theme.colors.text}>{isloggedIn ? 'Hi User!' : 'My Profile'}</Title>
+								{/* <Title color={theme.colors.text}>My Profile</Title> */}
+
+								{!isloggedIn ? (
+									<Title color={theme.colors.text}>My Profile</Title>
+								) : (
+									<StyledButton onclick={handleClick}>Sign in</StyledButton>
+								)}
 							</TitleContainer>
 							<SearchInput />
 							<AlignedItems>
-								<StyledButton>
+								<Button>
 									<StyledLink>
 										<FontAwesomeIcon icon={faClock} />
 									</StyledLink>
-								</StyledButton>
-								<StyledButton>
+								</Button>
+								<Button>
 									<StyledLink>
 										<FontAwesomeIcon icon={faHeart} />
 									</StyledLink>
-								</StyledButton>
+								</Button>
 								<UserContext.Provider value={{ loggedIn: isloggedIn }}>
-									<StyledButton onClick={handleClick}>
+									<Button onClick={handleClick}>
 										<StyledLink>
 											<FontAwesomeIcon icon={faUser} />
 										</StyledLink>
-									</StyledButton>
+									</Button>
 								</UserContext.Provider>
 							</AlignedItems>
 						</SpacedItems>
