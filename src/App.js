@@ -4,6 +4,7 @@ import GalerySection from './components/GalerySection';
 import { createGlobalStyle } from 'styled-components';
 import { theme } from './styles/Themes';
 import { ThemeProvider } from 'styled-components';
+import { AlignedItems } from './components/Commons';
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -11,7 +12,8 @@ font-family: 'Itim', cursive;
 background-color: ${({ theme }) => theme.colors.background};
 }
 * {
-  margin: 0
+  margin: 0;
+
 }
 `;
 
@@ -21,8 +23,10 @@ const App = () => {
 			<ThemeProvider theme={theme}>
 				<GlobalStyle />
 				<NavBar />
-				<ProfileInfo />
-				<GalerySection />
+				<AlignedItems flexDirection="column">
+					<ProfileInfo />
+					<GalerySection />
+				</AlignedItems>
 			</ThemeProvider>
 		</div>
 	);

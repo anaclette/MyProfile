@@ -1,5 +1,22 @@
+import { useContext, useState } from 'react';
+import UserContext from '../contexts/UserContext';
 import styled from 'styled-components';
 import profile from './profile.png';
+
+const Overlay = styled.div`
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: black;
+	color: white;
+	opacity: 0.8;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+`;
 
 const ImgContainer = styled.div`
 	padding: 2px;
@@ -18,9 +35,14 @@ const PersonalDetailsContainer = styled.div`
 const TextInfoContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: ${(props) => props.justifyContent || 'space-evenly'};
+	align-items: ${(props) => props.alignItems || 'flex-start'};
 `;
-const NameContainer = styled.div`display: flex;`;
+const NameContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	min-width: 220px;
+`;
 const UserName = styled.h2`
 font-weight: bold
 font-size: 13px;
@@ -29,9 +51,11 @@ const StyledButton = styled.button`
 	width: 90px;
 	padding: 7px;
 	border-radius: 5px;
-	${'' /* outline: none; */} font-size: 13px;
+	cursor: pointer;
+	font-size: 13px;
+	background-color: white;
+	font-family: 'Itim', cursive;
 	border: 1px solid transparent;
-	margin-left: 15px;
 `;
 const ContentDetails = styled.div`display: flex;`;
 
@@ -47,15 +71,22 @@ const TextLine = styled.span`font-size: 13px;`;
 const Name = styled.h3`font-weight: bold;`;
 
 const ProfileInfo = () => {
+	const [ openOverlay, setOpenOverlay ] = useState(false);
+	const { loggedIn } = useContext(UserContext);
+	const handleClick = () => {
+		setOpenOverlay(true);
+	};
 	return (
 		<PersonalDetailsContainer>
 			<ImgContainer>
-				<img src={profile} />
+				<img alt="user name" src={profile} />
 			</ImgContainer>
 			<TextInfoContainer>
 				<NameContainer>
 					<UserName>username</UserName>
-					<StyledButton>Edit Profile</StyledButton>
+					<StyledButton loggedIn={loggedIn} onClick={handleClick}>
+						Edit Profile
+					</StyledButton>
 				</NameContainer>
 				<ContentDetails>
 					<DetailBox>
@@ -73,6 +104,14 @@ const ProfileInfo = () => {
 				</ContentDetails>
 				<Name>User</Name>
 			</TextInfoContainer>
+			{openOverlay && (
+				<Overlay>
+					{/* <TextInfoContainer alignItems="center" justifyContent="center"> */}
+					<TextLine>You are not logged in!</TextLine>
+					<StyledButton onClick={() => setOpenOverlay(false)}>Sign in</StyledButton>
+					{/* </TextInfoContainer> */}
+				</Overlay>
+			)}
 		</PersonalDetailsContainer>
 	);
 };
