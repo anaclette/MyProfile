@@ -13,7 +13,7 @@ import { theme } from '../styles/Themes';
 
 const StyledNavBar = styled.div`
 	padding: 10px;
-	justify-content: space-evenly;
+	width: 100%;
 	background-color: ${({ theme }) => theme.colors.primary};
 `;
 
