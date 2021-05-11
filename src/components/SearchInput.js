@@ -8,6 +8,9 @@ export const StyledInput = styled.input`
 	border-radius: 5px;
 	border: 1px solid #ffd56b;
 	font-size: 17px;
+	@media (max-width: 600px) {
+		width: 100px;
+	}
 `;
 
 const SearchInput = () => {
