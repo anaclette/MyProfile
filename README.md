@@ -1,4 +1,4 @@
-### UseContext Practice 
+# UseContext Practice 
 
 This is (kind of will be actually) a site pretty similar to Instagram.
 
@@ -6,8 +6,7 @@ This is (kind of will be actually) a site pretty similar to Instagram.
 
 React, context, styled components. 
 
-# Where to visit it
-<!-- ### it's barely started, but here goes an overview:
+### Where to visit it
+#### it's barely started, but here goes an overview:
 
-[] -->
-[not available yet]
+[https://my-profile-app.netlify.app/]
