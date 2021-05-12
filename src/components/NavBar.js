@@ -19,12 +19,9 @@ const StyledNavBar = styled.div`
 	background-color: ${({ theme }) => theme.colors.primary};
 `;
 
-const UserWaveHello = styled.h1`font-size: 15px;`;
-
 const NavBar = () => {
 	const [ isloggedIn, setLoggedIn ] = useState(false);
 	const [ view, setCurrentView ] = useState(false);
-
 	const handleClick = () => {
 		setLoggedIn(!isloggedIn);
 	};

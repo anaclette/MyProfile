@@ -13,8 +13,19 @@ const SignInScreen = styled.form`
 	position: absolute;
 	z-index: 10;
 	border-radius: 5px;
-	left: 520px;
-	top: 130px;
+	left: 47%;
+	right: 50%;
+	top: 30%;
+	bottom: 50%;
+	@media (max-width: 900px) {
+		left: 300px;
+	}
+	@media (max-width: 700px) {
+		left: 200px;
+	}
+	@media (max-width: 600px) {
+		left: 90px;
+	}
 `;
 
 const UserInput = styled.input`
@@ -28,37 +39,39 @@ const UserInput = styled.input`
 	font-size: 20px;
 `;
 
+// const UserWaveHello = styled.h1`font-size: 15px;`;
 
 const SignIn = () => {
 	const [ view, setCurrentView ] = useState(true);
-	const [hi, setHi] = useState('')
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
 	};
-	
+
 	const handleClickLogin = () => {
 		setCurrentView(false);
 	};
 
 	return (
-		<>
+		<div>
 			{view && (
 				<Overlay>
-				<SignInScreen type="submit" onSubmit={handleSubmit}>
-					<label>
-						<UserInput type="text" placeholder="Enter your username" onChange={(e)=> {hi && setHi(<h1>{e.target.value}</h1>)}} />
-					</label>
-					<label>
-						<UserInput type="password" placeholder="Enter your password" />
-					</label>
-					<StyledButton onClick={handleClickLogin}> Login </StyledButton>
-					
-				</SignInScreen>
-			
-		</Overlay> )}
-		</>
+					<SignInScreen type="submit" onSubmit={handleSubmit}>
+						<label>
+							<UserInput
+								type="text"
+								placeholder="Enter your username"
+								onChange={(e) => console.log('estas escribiendo', e.target.value)}
+							/>
+						</label>
+						<label>
+							<UserInput type="password" placeholder="Enter your password" />
+						</label>
+						<StyledButton onClick={handleClickLogin}> Login </StyledButton>
+					</SignInScreen>
+				</Overlay>
+			)}
+		</div>
 	);
 };
 
