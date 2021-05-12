@@ -39,17 +39,14 @@ const UserInput = styled.input`
 	font-size: 20px;
 `;
 
-// const UserWaveHello = styled.h1`font-size: 15px;`;
-
 const SignIn = () => {
 	const [ view, setCurrentView ] = useState(true);
+	const [ userInput, setUserInput ] = useState('');
+	const [ signIn, setSignedIn ] = useState(false);
 
 	const handleSubmit = (e) => {
+		setSignedIn(true);
 		e.preventDefault();
-	};
-
-	const handleClickLogin = () => {
-		setCurrentView(false);
 	};
 
 	return (
@@ -61,16 +58,19 @@ const SignIn = () => {
 							<UserInput
 								type="text"
 								placeholder="Enter your username"
-								onChange={(e) => console.log('estas escribiendo', e.target.value)}
+								onChange={(e) => setUserInput(e.target.value)}
 							/>
 						</label>
 						<label>
 							<UserInput type="password" placeholder="Enter your password" />
 						</label>
-						<StyledButton onClick={handleClickLogin}> Login </StyledButton>
+						<StyledButton type="submit" onClick={() => setCurrentView(false)}>
+							Login
+						</StyledButton>
 					</SignInScreen>
 				</Overlay>
 			)}
+			{signIn && <h1>Hi {userInput}!</h1>}
 		</div>
 	);
 };

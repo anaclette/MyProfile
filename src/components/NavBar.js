@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
-import { SpacedItems, AlignedItems, StyledLink, TitleContainer, Title, Button } from './Commons';
+import { SpacedItems, AlignedItems, StyledLink, TitleContainer, Title, IconButton } from './Commons';
 import styled from 'styled-components';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../styles/Themes';
@@ -22,6 +22,7 @@ const StyledNavBar = styled.div`
 const NavBar = () => {
 	const [ isloggedIn, setLoggedIn ] = useState(false);
 	const [ view, setCurrentView ] = useState(false);
+
 	const handleClick = () => {
 		setLoggedIn(!isloggedIn);
 	};
@@ -45,22 +46,22 @@ const NavBar = () => {
 							</TitleContainer>
 							<SearchInput />
 							<AlignedItems>
-								<Button>
+								<IconButton>
 									<StyledLink>
 										<FontAwesomeIcon icon={faClock} />
 									</StyledLink>
-								</Button>
-								<Button>
+								</IconButton>
+								<IconButton>
 									<StyledLink>
 										<FontAwesomeIcon icon={faHeart} />
 									</StyledLink>
-								</Button>
+								</IconButton>
 								<UserContext.Provider value={{ loggedIn: isloggedIn }}>
-									<Button onClick={handleClick}>
+									<IconButton onClick={handleClick}>
 										<StyledLink>
 											<FontAwesomeIcon icon={faUser} />
 										</StyledLink>
-									</Button>
+									</IconButton>
 								</UserContext.Provider>
 							</AlignedItems>
 						</SpacedItems>
