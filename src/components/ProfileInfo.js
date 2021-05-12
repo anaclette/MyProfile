@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import UserContext from '../contexts/UserContext';
 import styled from 'styled-components';
 import profile from './profile.png';
+import SignIn from './SignInScreen';
 
 export const Overlay = styled.div`
 	position: fixed;
@@ -76,10 +77,17 @@ const Name = styled.h3`font-weight: bold;`;
 
 const ProfileInfo = () => {
 	const [ openOverlay, setOpenOverlay ] = useState(false);
+	const [ view, setCurrentView ] = useState(false);
 	const { loggedIn } = useContext(UserContext);
 	const handleClick = () => {
 		setOpenOverlay(true);
 	};
+
+	const handleClickSignIn = () => {
+		setOpenOverlay(false);
+		setCurrentView(true);
+	};
+
 	return (
 		<PersonalDetailsContainer>
 			<ImgContainer>
@@ -94,7 +102,7 @@ const ProfileInfo = () => {
 				</NameContainer>
 				<ContentDetails>
 					<DetailBox>
-						<Amount>25</Amount>
+						<Amount>5</Amount>
 						<TextLine>posts</TextLine>
 					</DetailBox>
 					<DetailBox>
@@ -111,9 +119,10 @@ const ProfileInfo = () => {
 			{openOverlay && (
 				<Overlay>
 					<TextLine>You are not logged in!</TextLine>
-					<StyledButton onClick={() => setOpenOverlay(false)}>Sign in</StyledButton>
+					<StyledButton onClick={handleClickSignIn}>Sign in</StyledButton>
 				</Overlay>
 			)}
+			{view && <SignIn />}
 		</PersonalDetailsContainer>
 	);
 };
