@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import UserContext from '../contexts/UserContext';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import SearchInput from './SearchInput';
@@ -19,13 +19,17 @@ const StyledNavBar = styled.div`
 	background-color: ${({ theme }) => theme.colors.primary};
 `;
 
+const UserWaveHello = styled.h1`font-size: 15px;`;
+
 const NavBar = () => {
 	const [ isloggedIn, setLoggedIn ] = useState(false);
+	const [ view, setCurrentView ] = useState(false);
 
-	// const { loggedIn } = useContext(UserContext);
-	// console.log('Im in NavBar', loggedIn);
 	const handleClick = () => {
 		setLoggedIn(!isloggedIn);
+	};
+	const handleClickSignIn = () => {
+		setCurrentView(!view);
 	};
 
 	return (
@@ -35,13 +39,12 @@ const NavBar = () => {
 					<StyledNavBar>
 						<SpacedItems>
 							<TitleContainer>
-								{/* <Title color={theme.colors.text}>My Profile</Title> */}
-
 								{!isloggedIn ? (
 									<Title color={theme.colors.text}>My Profile</Title>
 								) : (
-									<StyledButton onclick={handleClick}>Sign in</StyledButton>
+									<StyledButton onClick={handleClickSignIn}>Sign in</StyledButton>
 								)}
+								{view && <SignIn />}
 							</TitleContainer>
 							<SearchInput />
 							<AlignedItems>

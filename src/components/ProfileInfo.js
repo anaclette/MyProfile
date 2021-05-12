@@ -3,7 +3,7 @@ import UserContext from '../contexts/UserContext';
 import styled from 'styled-components';
 import profile from './profile.png';
 
-const Overlay = styled.div`
+export const Overlay = styled.div`
 	position: fixed;
 	top: 0;
 	right: 0;
