@@ -39,14 +39,25 @@ const UserInput = styled.input`
 	font-size: 20px;
 `;
 
+const HiContainer = styled.div`
+	display: flex;
+	min-width: 150px;
+	justify-content: flex-end;
+	overflow: hidden;
+`;
+const UserName = styled.h1`font-size: 25px;`;
 const SignIn = () => {
 	const [ view, setCurrentView ] = useState(true);
 	const [ userInput, setUserInput ] = useState('');
 	const [ signIn, setSignedIn ] = useState(false);
 
 	const handleSubmit = (e) => {
-		setSignedIn(true);
 		e.preventDefault();
+	};
+
+	const handleClickLogIn = (e) => {
+		setSignedIn(true);
+		setCurrentView(e.target.value);
 	};
 
 	return (
@@ -64,13 +75,17 @@ const SignIn = () => {
 						<label>
 							<UserInput type="password" placeholder="Enter your password" />
 						</label>
-						<StyledButton type="submit" onClick={() => setCurrentView(false)}>
+						<StyledButton type="submit" onClick={handleClickLogIn}>
 							Login
 						</StyledButton>
 					</SignInScreen>
 				</Overlay>
 			)}
-			{!signIn && <h1>Hi {userInput}!</h1>}
+			{signIn && (
+				<HiContainer>
+					<UserName>Hi {userInput}!</UserName>
+				</HiContainer>
+			)}
 		</div>
 	);
 };

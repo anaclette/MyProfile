@@ -28,6 +28,7 @@ const NavBar = () => {
 	};
 	const handleClickSignIn = () => {
 		setCurrentView(!view);
+		setLoggedIn(!isloggedIn);
 	};
 
 	return (
