@@ -70,7 +70,7 @@ const SignIn = () => {
 					</SignInScreen>
 				</Overlay>
 			)}
-			{signIn && <h1>Hi {userInput}!</h1>}
+			{!signIn && <h1>Hi {userInput}!</h1>}
 		</div>
 	);
 };
